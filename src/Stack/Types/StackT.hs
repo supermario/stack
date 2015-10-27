@@ -301,7 +301,7 @@ loggerFunc loc _src level msg =
              return (T.pack date <> T.pack l <> T.decodeUtf8 (fromLogStr (toLogStr msg)) <> T.pack lc)
           where getDate
                   | maxLogLevel <= LevelDebug =
-                    do now <- getCurrentTime
+                    do now <- getZonedTime
                        return (formatTime defaultTimeLocale "%Y-%m-%d %T%Q" now ++
                                ": ")
                   | otherwise = return ""
